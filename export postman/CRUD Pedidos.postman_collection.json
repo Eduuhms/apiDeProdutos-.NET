@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "25841ba1-82e9-40e6-9688-a188885af3df",
+		"name": "CRUD Pedidos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30942537",
+		"_collection_link": "https://puc-puquetes.postman.co/workspace/teste-people4tech~63cebfe3-fad9-45b3-b007-a18882c16ddc/collection/30942537-25841ba1-82e9-40e6-9688-a188885af3df?action=share&source=collection_link&creator=30942537"
+	},
+	"item": [
+		{
+			"name": "/api/pedido",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/pedido",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pedido"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pedido/{{id}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/pedido/{{id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pedido",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pedido",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cliente\": \"Eduardo\",\n  \"items\": [\n    { \"produtoId\": 1, \"quantidade\": 2 }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/pedido",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pedido"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": ""
+		}
+	]
+}
