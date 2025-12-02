@@ -59,4 +59,44 @@ public class ProdutoController : ControllerBase
         await _db.SaveChangesAsync();
         return NoContent();
     }
+
+    [HttpPatch("{id}/adicionar-estoque/{quantidade}")]
+    public async Task<ActionResult<Produto>> AdicionarEstoque(int id, int quantidade)
+    {
+        if (quantidade <= 0)
+            return BadRequest(new { error = "Quantidade deve ser maior que zero." });
+
+        var produto = await _db.Produto.FindAsync(id);
+        if (produto == null) return NotFound();
+
+        produto.Estoque += quantidade;
+        await _db.SaveChangesAsync();
+
+        return Ok(produto);
+    }
+
+    [HttpPatch("{id}/remover-estoque/{quantidade}")]
+    public async Task<ActionResult<Produto>> RemoverEstoque(int id, int quantidade)
+    {
+        if (quantidade <= 0)
+            return BadRequest(new { error = "Quantidade deve ser maior que zero." });
+
+        var produto = await _db.Produto.FindAsync(id);
+        if (produto == null) return NotFound();
+
+        if (quantidade > produto.Estoque)
+        {
+            // Sempre escrever a mensagem no console com o estoque atual
+            Console.WriteLine($"Agora resta {produto.Estoque} {produto.Nome} no estoque");
+            return BadRequest(new { error = "Quantidade solicitada é maior que o estoque disponível." });
+        }
+
+        produto.Estoque -= quantidade;
+        await _db.SaveChangesAsync();
+
+        // Mensagem solicitada no console
+        Console.WriteLine($"Agora resta {produto.Estoque} {produto.Nome} no estoque");
+
+        return Ok(produto);
+    }
 }
